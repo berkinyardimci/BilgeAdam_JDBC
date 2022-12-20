@@ -1,0 +1,32 @@
+package com.employeeApp.repository;
+
+import com.employeeApp.entitiy.Employee;
+
+public class EmployeeReposityory implements IEmployeeRepository {
+
+	@Override
+	public void createEmployee(Employee employee) {
+
+	}
+
+	@Override
+	public void getAllEmployee() {
+
+	}
+
+	@Override
+	public void getEmployeeById(int id) {
+
+	}
+
+	@Override
+	public void updateEmployeeById(int id, String name) {
+
+	}
+
+	@Override
+	public void deleteEmployeeById(int id) {
+
+	}
+
+}

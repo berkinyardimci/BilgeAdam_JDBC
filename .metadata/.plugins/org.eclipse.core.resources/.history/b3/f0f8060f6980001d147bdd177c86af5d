@@ -1,0 +1,20 @@
+package com.employeeApp;
+
+public class MainApp {
+
+	public static void main(String[] args) {
+		//veritabanı tablosu oluşturalım
+		//name String, salary int, age int
+		//Employee clasını yazalım veritabana tablosuna göre
+		
+		
+		do {
+			System.out.println("1. Create Employee \n" + "2. Bütün Çalışanları Göster\n" + "3. Id ye göre Çalışan Getir \n"
+					+ "4. Çalışanı Güncelle \n" + "5. Çalışanı sil\n" + "6. Çıkış\n");
+		}while(true);
+		
+		
+		
+	}
+
+}

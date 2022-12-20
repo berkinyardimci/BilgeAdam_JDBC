@@ -1,0 +1,75 @@
+package com.bilgeadam;
+
+import java.beans.Statement;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+public class Main {
+
+	public static void main(String[] args) {
+		
+		
+		//database oluşturalım school,
+		//student tablosu oluşturalım , name surname ve city
+		//mainde oluşturdugumuz databse bağlanalım.
+
+		//maven , gradle avatnajları dezavantajları,
+		
+		//execute methodu yazalım parametre olarak Connection nesnesi birde sql sorgusu String şeklinde
+		//içine geçtiğimiz sql sorgusunu çalıştırsın
+		
+		
+		//Student classı oluşturalım dataBase uygun şekilde
+		//create methodu yazalım, Student nesnesi ile 
+		//connection nesnesi alsın parametre olarak.
+		
+		
+		String url = "jdbc:postgresql://localhost:5432/school2";
+		String username = "postgres";
+		String password = "12345";
+		
+		String sql = " insert into student(name,age,city) values('M',35,'Ankara')";
+
+		
+		Connection connect = null;
+		
+	      try {
+	         Class.forName("org.postgresql.Driver");
+	         connect = DriverManager.getConnection(url,username, password);
+	         
+	         Student student = new Student("B", 15,"İzmir");
+	         //create(connect,student);
+	 		//execute(connect,sql);
+	 		
+	      } catch (Exception e) {
+	         e.printStackTrace();
+	         System.err.println(e.getClass().getName()+": "+e.getMessage());
+	         System.exit(0);
+	      }finally {
+	    	  try {
+				connect.close();
+			} catch (SQLException e2) {
+				e2.printStackTrace();
+			}
+	      }
+	      System.out.println("Opened database successfully");
+	}
+
+	private static void execute(Connection connection, String sqlSorgu) {
+		try {
+			PreparedStatement preparedStatement = connection.prepareStatement(sqlSorgu);
+			preparedStatement.executeUpdate();
+			System.out.println("Ekeleme başarılı");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static void create(Connection connection, Student student) {
+		String sql = " insert into student(name,age,city) values(?,?,?)";
+		
+	}
+
+}

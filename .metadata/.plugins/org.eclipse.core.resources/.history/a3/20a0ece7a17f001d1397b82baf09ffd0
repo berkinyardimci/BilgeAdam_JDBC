@@ -1,0 +1,56 @@
+package com.bilgeadam;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+public class Main {
+	
+	//actor sayısını bulcaz method bize int değer dönsün, try with resource
+
+	private final String url = "jdbc:postgresql://localhost:5432/dvdrental";
+	private final String username = "postgres";
+	private final String password = "12345";
+
+	public Connection connect() {
+		Connection connect = null;
+		try {
+			connect = DriverManager.getConnection(url, username, password);
+			System.out.println("Başarılı şekilde Bağlantı gerçekleşti ");
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		}
+		return connect;
+	}
+	
+	public int getActorCount() {
+		String sql = "select count(*) from actor";
+		
+		int count =0;
+		
+		try(Connection connection = connect(); 
+				PreparedStatement preparedStatement = connection.prepareStatement(sql);){
+			ResultSet resultSet = preparedStatement.executeQuery();
+			resultSet.next();
+			count = resultSet.getInt(1);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return count;
+	}
+	
+	public static void main(String[] args) {
+
+		// dvdrental db sine bağlanalım, connect metodu yazalım
+		Main main = new Main();
+		//main.connect();
+		int total = main.getActorCount();
+		System.out.println(total);
+		
+
+	}
+}

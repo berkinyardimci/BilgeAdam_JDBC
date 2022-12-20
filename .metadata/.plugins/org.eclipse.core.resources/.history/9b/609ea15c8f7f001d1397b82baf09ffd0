@@ -1,0 +1,61 @@
+package com.bilgeadam;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+public class Main {
+
+	public static void main(String[] args) {
+		
+		
+		//database oluşturalım school,
+		//student tablosu oluşturalım , name surname ve city
+		//mainde oluşturdugumuz databse bağlanalım.
+
+		//maven , gradle avatnajları dezavantajları,
+		
+		//execute methodu yazalım parametre olarak Connection nesnesi birde sql sorgusu String şeklinde
+		//içine geçtiğimiz sql sorgusunu çalıştırsın
+		//
+		
+		
+		String url = "jdbc:postgresql://localhost:5432/school";
+		String username = "postgres";
+		String password = "12345";
+		
+		String sql = "insert into student(name,surname,city) values('Mert','bahar','Ankara')";
+
+		
+		Connection connect = null;
+		
+	      try {
+	         Class.forName("org.postgresql.Driver");
+	         connect = DriverManager.getConnection(url,username, password);
+	 		execute(connect,sql);
+	      } catch (Exception e) {
+	         e.printStackTrace();
+	         System.err.println(e.getClass().getName()+": "+e.getMessage());
+	         System.exit(0);
+	      }finally {
+	    	  try {
+				connect.close();
+			} catch (SQLException e2) {
+				e2.printStackTrace();
+			}
+	      }
+	      System.out.println("Opened database successfully");
+	}
+
+	private static void execute(Connection connection, String sqlSorgu) {
+		try {
+			PreparedStatement preparedStatement = connection.prepareStatement(sqlSorgu);
+			preparedStatement.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+	}
+
+}

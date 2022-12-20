@@ -1,0 +1,14 @@
+package com.employeeApp;
+
+public class MainApp {
+
+	public static void main(String[] args) {
+		//veritabanı tablosu oluşturalım
+		//name String, salary int, age int
+		//Employee clasını yazalım veritabana tablosuna göre
+		
+		
+
+	}
+
+}
