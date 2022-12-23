@@ -2,6 +2,7 @@ package com.bilgeadam.repository;
 
 import java.util.List;
 
+
 public interface ICrud <T>{
 	
 	void save(T t);
