@@ -208,6 +208,9 @@ public class Main {
 		
 		//System.out.println(main.updateLastName(780, "Sonbahar")); 
 		main.deleteActor(215);
+	
+		
+
 		
 	}
 }
