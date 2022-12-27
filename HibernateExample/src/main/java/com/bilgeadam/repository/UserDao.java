@@ -2,6 +2,8 @@ package com.bilgeadam.repository;
 
 import java.util.List;
 
+import javax.persistence.TypedQuery;
+
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -97,7 +99,36 @@ public class UserDao implements ICrud<User> {
 
 	@Override
 	public List<User> findAll() {
-		return null;
+
+		Transaction transaction = null;
+		List<User> users = null;
+		try (Session session = dataBaseConnectionHibernate()) {
+			transaction = session.beginTransaction();
+			users = session.createQuery("from User", User.class).list();
+			transaction.commit();
+			for (User user : users) {
+				System.out.println(user);
+			}
+		}
+		return users;
+	}
+
+	//TypedQuery, NativeQuery, CriteriaQuery
+	
+	public List<User> findAll2() {
+		Session session = null;
+		List<User> userList = null;
+		try {
+			session = dataBaseConnectionHibernate();
+			String query = "select users from User users"; //hibernate quey language
+			TypedQuery<User> typedQuery = session.createQuery(query, User.class);
+			userList = typedQuery.getResultList();
+			for (User user : userList) {
+				System.out.println(user);
+			}
+		} catch (Exception e) {
+		}
+		return userList;
 	}
 
 	@Override
