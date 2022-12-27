@@ -3,6 +3,7 @@ package com.bilgeadam.util;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+import com.bilgeadam.entity.Post;
 import com.bilgeadam.entity.User;
 
 public class HibernateUtils {
@@ -15,6 +16,7 @@ public class HibernateUtils {
 			Configuration configuration = new Configuration();
 
 			configuration.addAnnotatedClass(User.class);
+			configuration.addAnnotatedClass(Post.class);
 			SessionFactory factory = configuration.configure("hibernate.cfg.xml").buildSessionFactory();
 			return factory;
 		} catch (Exception e) {

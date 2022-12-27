@@ -1,11 +1,22 @@
 package com.bilgeadam.entity;
 
+import java.util.List;
+import java.util.Map;
+
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.swing.JSpinner.DateEditor;
+
+import com.bilgeadam.entity.enums.EAdressType;
+import com.bilgeadam.entity.enums.EGender;
 
 /*
  * Code First
@@ -21,11 +32,30 @@ import javax.persistence.Table;
  *  
  *  save
  *  findbyId methodu yazalım find methodu parametre olarak ne alıyo
- *  
+ * 
  *  delete 
- *  
+ * 
  *  update 
  *  
+ * Post sınıfı oluşturalım
+ * content
+ * createdDay --> oluşturulma tarihi
+ * Post repository oluşturup posta göre düzenleyelim
+ * postController oluşturup bitane post oluşturalım
+ * post oluşturunca veritabanında oluşturdugumuz saniyeye kadar görcez.
+ * 
+ * Name sınıfı oluşturalım bu veritabanı tablosu olmicak @Embedable
+ * firstname
+ * lastName,
+ * middleName
+ * 
+ * EGender enum MAN, WOMAN
+ * 
+ * Address country, streetName, city embeddable
+ * EAdressType HOME, BUSINESS MI
+ * 
+ * Map yapısı içinde tutucaz EAdressType, Address
+ * 
  * 
  */
 
@@ -37,23 +67,70 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private long id;
-
+	
 	@Column(nullable = false, unique = true)
 	private String username;
 
 	@Column(length = 32)
 	private String password;
 
-	private String gender;
-
-	public User(String username, String password, String gender) {
+	@Enumerated(EnumType.STRING)
+	private EGender gender;
+	
+	@Embedded
+	private Name name;
+	
+	@ElementCollection
+	private Map<EAdressType, Adress> address;
+	
+	@ElementCollection
+	private List<String> areasOfInterest;
+	
+	public User(String username, String password, EGender gender) {
 		super();
 		this.username = username;
 		this.password = password;
 		this.gender = gender;
 	}
+	
+	public User(String username, String password, EGender gender, Name name) {
+		super();
+		this.username = username;
+		this.password = password;
+		this.gender = gender;
+		this.name = name;
+	}
+	
+	
+
+
 	public User() {
-		
+	}
+	
+	
+
+	public Name getName() {
+		return name;
+	}
+
+	public void setName(Name name) {
+		this.name = name;
+	}
+
+	public Map<EAdressType, Adress> getAddress() {
+		return address;
+	}
+
+	public void setAddress(Map<EAdressType, Adress> address) {
+		this.address = address;
+	}
+
+	public List<String> getAreasOfInterest() {
+		return areasOfInterest;
+	}
+
+	public void setAreasOfInterest(List<String> areasOfInterest) {
+		this.areasOfInterest = areasOfInterest;
 	}
 
 	public long getId() {
@@ -80,11 +157,11 @@ public class User {
 		this.password = password;
 	}
 
-	public String getGender() {
+	public EGender getGender() {
 		return gender;
 	}
 
-	public void setGender(String gender) {
+	public void setGender(EGender gender) {
 		this.gender = gender;
 	}
 

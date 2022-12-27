@@ -1,7 +1,6 @@
 package com.bilgeadam.repository;
 
 import java.util.List;
-
 import javax.persistence.EntityManager;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -20,13 +19,13 @@ public class UserRepository implements ICrud<User> {
 	private Transaction transaction;
 	private CriteriaBuilder criteriaBuilder;
 	private EntityManager entityManager;
-	
-	//set methodları yok, nasıl set ederiz
+
+	// set methodları yok, nasıl set ederiz
 
 	// openTransaction
 	// successClose
 	// errorClose
-	
+
 	public UserRepository() {
 		entityManager = HibernateUtils.getSessionFactory().createEntityManager();
 		criteriaBuilder = entityManager.getCriteriaBuilder();
@@ -53,7 +52,7 @@ public class UserRepository implements ICrud<User> {
 			openTransaction();
 			session.save(t);
 			successClose();
-		}catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			errorClose();
 		}
@@ -66,19 +65,40 @@ public class UserRepository implements ICrud<User> {
 			t.setId(id);
 			session.update(t);
 			successClose();
-		}catch (Exception e) {
+		} catch (Exception e) {
 			errorClose();
 		}
 	}
 
 	@Override
 	public void delete(long id) {
-		
+		User user = findById(id);
+		if (user != null) {
+			try {
+				openTransaction();
+				session.delete(user);
+				successClose();
+			} catch (Exception e) {
+				errorClose();
+			}
+		} else {
+			System.out.println(id + " li kullanıcı bulunmamaktadır");
+		}
 	}
 
 	@Override
 	public List<User> findAll() {
-		return null;
+
+		openTransaction();
+		criteriaBuilder = session.getCriteriaBuilder();
+		CriteriaQuery<User> criteriaQuery = criteriaBuilder.createQuery(User.class);
+		Root<User> root = criteriaQuery.from(User.class);
+		criteriaQuery.select(root);
+		List<User> userList = entityManager.createQuery(criteriaQuery).getResultList();
+		for (User user : userList) {
+			System.out.println(user);
+		}
+		return userList;
 	}
 
 	@Override
@@ -89,7 +109,8 @@ public class UserRepository implements ICrud<User> {
 		Root<User> root = criteriaQuery.from(User.class);
 		criteriaQuery.select(root);
 		criteriaQuery.where(criteriaBuilder.equal(root.get("id"), id));
-		
+
 		return entityManager.createQuery(criteriaQuery).getSingleResult();
 	}
+
 }
