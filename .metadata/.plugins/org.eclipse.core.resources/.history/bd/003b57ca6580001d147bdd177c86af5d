@@ -1,8 +1,0 @@
-package com.employeeApp.entitiy;
-
-public class Employee {
-	private int id;
-	private String name;
-	private int salary;
-	private int age;
-}

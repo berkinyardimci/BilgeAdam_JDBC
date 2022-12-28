@@ -1,5 +1,6 @@
 package com.bilgeadam.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -38,18 +39,29 @@ public class UserController {
 		// System.out.println(user.getUsername());
 
 		// repository.findAll();
-		Name name = new Name("Mehmet", null, "Yardımcı");
-		User user = new User("ahmet123", "123456", EGender.MAN, name);
+		Name name = new Name("Selin", null, "Yardımcı");
+		User user = new User("username5555", "123456", EGender.WOMAN, name);
+		repository.save(user);
+		
 		// repository.save(user);
-
-		Adress adress = new Adress("Ayrancı", "Turkiye", "Ankara");
-		Adress adress2 = new Adress("Tunalı", "Turkiye", "Ankara");
+		/*
+		Adress adress = new Adress("Çayyolu", "Turkiye", "Ankara");
+		Adress adress2 = new Adress("Bebek", "Turkiye", "İstanbul");
+		Adress adress3 = new Adress("Beşiktaş", "Turkiye", "İstanbul");
+		Adress adress4 = new Adress("Kızılay", "Turkiye", "Ankara");
 		Map<EAdressType, Adress> map = new HashMap<>();
 		map.put(EAdressType.HOME, adress);
 		map.put(EAdressType.BUSSINNES, adress2);
-
+		map.put(EAdressType.RESTOURANT, adress3);
+		map.put(EAdressType.SCHOOL, adress4);
+		
+		List<String> interests = new ArrayList<>();
+		interests.add("Coding");
+		interests.add("Reading Artical");
+		
+		user.setAreasOfInterest(interests);
 		user.setAddress(map);
 		repository.save(user);
-
+*/
 	}
 }
