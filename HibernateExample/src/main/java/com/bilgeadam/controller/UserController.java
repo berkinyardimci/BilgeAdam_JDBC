@@ -39,9 +39,9 @@ public class UserController {
 		// System.out.println(user.getUsername());
 
 		// repository.findAll();
-		Name name = new Name("Selin", null, "Yardımcı");
-		User user = new User("username5555", "123456", EGender.WOMAN, name);
-		repository.save(user);
+//		Name name = new Name("Serkan", null, "Yardımcı");
+//		User user = new User("username2121555521", "123456", EGender.MAN, name);
+//		repository.save(user);
 		
 		// repository.save(user);
 		/*
@@ -63,5 +63,7 @@ public class UserController {
 		user.setAddress(map);
 		repository.save(user);
 */
+		
+		repository.startLike("M");
 	}
 }

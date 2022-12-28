@@ -112,5 +112,21 @@ public class UserRepository implements ICrud<User> {
 
 		return entityManager.createQuery(criteriaQuery).getSingleResult();
 	}
-
+	
+	
+	public void startLike(String value) {
+		CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+		CriteriaQuery<User> query = criteriaBuilder.createQuery(User.class);
+		Root<User> root = query.from(User.class);
+		query.select(root).where(criteriaBuilder.like(root.get("name").get("name"), value + "%"));
+		List<User> users = entityManager.createQuery(query).getResultList();
+		users.forEach(System.out::println);
+	}
+	
+	
+	public void sumPost(String value) {
+		//postnumberlerin toplamı
+		//multiselect
+	}
+	
 }

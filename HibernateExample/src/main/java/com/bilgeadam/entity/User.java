@@ -67,7 +67,7 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private long id;
-	
+
 	@Column(nullable = false, unique = true)
 	private String username;
 
@@ -76,23 +76,26 @@ public class User {
 
 	@Enumerated(EnumType.STRING)
 	private EGender gender;
-	
+
 	@Embedded
 	private Name name;
-	
+
 	@ElementCollection
 	private Map<EAdressType, Adress> address;
-	
+
 	@ElementCollection
 	private List<String> areasOfInterest;
 	
+	@Column(nullable = true, name = "post_number")
+	private int postNumber;
+
 	public User(String username, String password, EGender gender) {
 		super();
 		this.username = username;
 		this.password = password;
 		this.gender = gender;
 	}
-	
+
 	public User(String username, String password, EGender gender, Name name) {
 		super();
 		this.username = username;
@@ -100,14 +103,17 @@ public class User {
 		this.gender = gender;
 		this.name = name;
 	}
-	
-	
 
+	public int getPostNumber() {
+		return postNumber;
+	}
+
+	public void setPostNumber(int postNumber) {
+		this.postNumber = postNumber;
+	}
 
 	public User() {
 	}
-	
-	
 
 	public Name getName() {
 		return name;
