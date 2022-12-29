@@ -1,22 +1,16 @@
 package com.bilgeadam.entity;
 
 import java.util.List;
-import java.util.Map;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.ElementCollection;
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.swing.JSpinner.DateEditor;
-
-import com.bilgeadam.entity.enums.EAdressType;
-import com.bilgeadam.entity.enums.EGender;
 
 /*
  * Code First
@@ -74,69 +68,28 @@ public class User {
 	@Column(length = 32)
 	private String password;
 
-	@Enumerated(EnumType.STRING)
-	private EGender gender;
-
-	@Embedded
-	private Name name;
-
-	@ElementCollection
-	private Map<EAdressType, Adress> address;
-
-	@ElementCollection
-	private List<String> areasOfInterest;
+	@OneToOne(cascade = CascadeType.ALL)
+	private UserDetail userDetail;
 	
-	@Column(nullable = true, name = "post_number")
-	private int postNumber;
+	@OneToMany( mappedBy = "user",cascade = CascadeType.ALL)
+	private List<Post> posts;
 
-	public User(String username, String password, EGender gender) {
+	public User(String username, String password, UserDetail userDetail) {
 		super();
 		this.username = username;
 		this.password = password;
-		this.gender = gender;
-	}
-
-	public User(String username, String password, EGender gender, Name name) {
-		super();
-		this.username = username;
-		this.password = password;
-		this.gender = gender;
-		this.name = name;
-	}
-
-	public int getPostNumber() {
-		return postNumber;
-	}
-
-	public void setPostNumber(int postNumber) {
-		this.postNumber = postNumber;
+		this.userDetail = userDetail;
 	}
 
 	public User() {
+
 	}
 
-	public Name getName() {
-		return name;
-	}
-
-	public void setName(Name name) {
-		this.name = name;
-	}
-
-	public Map<EAdressType, Adress> getAddress() {
-		return address;
-	}
-
-	public void setAddress(Map<EAdressType, Adress> address) {
-		this.address = address;
-	}
-
-	public List<String> getAreasOfInterest() {
-		return areasOfInterest;
-	}
-
-	public void setAreasOfInterest(List<String> areasOfInterest) {
-		this.areasOfInterest = areasOfInterest;
+	public User(long id, String username, String password) {
+		super();
+		this.id = id;
+		this.username = username;
+		this.password = password;
 	}
 
 	public long getId() {
@@ -163,17 +116,12 @@ public class User {
 		this.password = password;
 	}
 
-	public EGender getGender() {
-		return gender;
+	public UserDetail getUserDetail() {
+		return userDetail;
 	}
 
-	public void setGender(EGender gender) {
-		this.gender = gender;
-	}
-
-	@Override
-	public String toString() {
-		return "User [id=" + id + ", username=" + username + ", password=" + password + ", gender=" + gender + "]";
+	public void setUserDetail(UserDetail userDetail) {
+		this.userDetail = userDetail;
 	}
 
 }

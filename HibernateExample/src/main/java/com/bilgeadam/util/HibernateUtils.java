@@ -5,6 +5,7 @@ import org.hibernate.cfg.Configuration;
 
 import com.bilgeadam.entity.Post;
 import com.bilgeadam.entity.User;
+import com.bilgeadam.entity.UserDetail;
 
 public class HibernateUtils {
 
@@ -17,6 +18,7 @@ public class HibernateUtils {
 
 			configuration.addAnnotatedClass(User.class);
 			configuration.addAnnotatedClass(Post.class);
+			configuration.addAnnotatedClass(UserDetail.class);
 			SessionFactory factory = configuration.configure("hibernate.cfg.xml").buildSessionFactory();
 			return factory;
 		} catch (Exception e) {

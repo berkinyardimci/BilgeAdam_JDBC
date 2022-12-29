@@ -2,11 +2,14 @@ package com.bilgeadam.entity;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -24,13 +27,26 @@ public class Post {
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date createdDate;
-
-	public Post(String content, Date createdDate) {
+	
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private User user;
+	
+	public Post(String content, Date createdDate,User user) {
 		this.content = content;
 		this.createdDate = createdDate;
+		this.user = user;
 	}
 
 	public Post() {
+	}
+
+	
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	public long getId() {

@@ -62,7 +62,7 @@ public class UserDao implements ICrud<User> {
 			User user = findById(id);
 			if (user != null) {
 				user.setUsername(t.getUsername());
-				user.setGender(t.getGender());
+				//user.setGender(t.getGender());
 				user.setPassword(t.getPassword());
 				session = dataBaseConnectionHibernate();
 				session.getTransaction().begin();
