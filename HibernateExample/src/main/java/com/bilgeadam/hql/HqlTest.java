@@ -9,6 +9,7 @@ import org.hibernate.Session;
 import org.hibernate.query.Query;
 
 import com.bilgeadam.entity.User;
+import com.bilgeadam.entity.UserDetail;
 import com.bilgeadam.util.HibernateUtils;
 
 public class HqlTest {
@@ -31,28 +32,28 @@ public class HqlTest {
 	 */
 
 	public static void findAll() {
-		String hql = "select user from User as user";
+		String hql = "select user from UserDetail as user";
 		Session session = HibernateUtils.getSessionFactory().openSession();
-		TypedQuery<User> typedQuery = session.createQuery(hql, User.class);
-		List<User> users = typedQuery.getResultList();
+		TypedQuery<UserDetail> typedQuery = session.createQuery(hql, UserDetail.class);
+		List<UserDetail> users = typedQuery.getResultList();
 		users.forEach(System.out::println);
 	}
 
 	//
 	public static void startLike(String s) {
-		String hql = "select user from User as user where firstName like '" + s + "%'";
+		String hql = "select user from UserDetail as user where firstName like '" + s + "%'";
 		Session session = HibernateUtils.getSessionFactory().openSession();
-		TypedQuery<User> typedQuery = session.createQuery(hql, User.class);
-		List<User> users = typedQuery.getResultList();
+		TypedQuery<UserDetail> typedQuery = session.createQuery(hql, UserDetail.class);
+		List<UserDetail> users = typedQuery.getResultList();
 		users.forEach(System.out::println);
 	}
 
 	public static void startLikes(String value) {
-		String hql2 = "select user from User as user where user.name.lastName like :key";
+		String hql2 = "select user from UserDetail as user where user.name.lastName like :key";
 		Session session = HibernateUtils.getSessionFactory().openSession();
-		TypedQuery<User> typedQuery = session.createQuery(hql2, User.class);
+		TypedQuery<UserDetail> typedQuery = session.createQuery(hql2, UserDetail.class);
 		typedQuery.setParameter("key", value + "%");
-		List<User> users = typedQuery.getResultList();
+		List<UserDetail> users = typedQuery.getResultList();
 		users.forEach(System.out::println);
 	}
 
@@ -73,31 +74,31 @@ public class HqlTest {
 	}
 
 	public static void maxPostNumber() {
-		String hql2 = "select user from User as user where user.postNumber "
-				+ "in (select max(user.postNumber) from User as user) ";
+		String hql2 = "select user from UserDetail as user where user.postNumber "
+				+ "in (select max(user.postNumber) from UserDetail as user) ";
 		Session session = HibernateUtils.getSessionFactory().openSession();
-		TypedQuery<User> typedQuery = session.createQuery(hql2, User.class);
-		User user = typedQuery.getSingleResult();
+		TypedQuery<UserDetail> typedQuery = session.createQuery(hql2, UserDetail.class);
+		UserDetail user = typedQuery.getSingleResult();
 		System.out.println(user.getName().getName());
 	}
 
 	public static void avgPostNumber() {
 		Session session = HibernateUtils.getSessionFactory().openSession();
-		String minHql = "select avg(user.postNumber) from User as user ";
+		String minHql = "select avg(user.postNumber) from UserDetail as user ";
 		Query avgQuery = session.createQuery(minHql);
 		System.out.println("avg--> " + avgQuery.getSingleResult());
 	}
 
 	public static void avgPostNumberAlternatif() {
 		Session session = HibernateUtils.getSessionFactory().openSession();
-		String avgHql = "select avg(user.postNumber) from User as user ";
+		String avgHql = "select avg(user.postNumber) from UserDetail as user ";
 		Double avg = session.createQuery(avgHql, Double.class).getSingleResult();
 		System.out.println(avg);
 	}
 
 	public static void sumPostNumber() {
 		Session session = HibernateUtils.getSessionFactory().openSession();
-		String sumHql = "select sum(user.postNumber) from User as user ";
+		String sumHql = "select sum(user.postNumber) from UserDetail as user ";
 		long sum = session.createQuery(sumHql, Long.class).getSingleResult();
 		System.out.println(sum);
 	}
@@ -106,24 +107,24 @@ public class HqlTest {
 	// farkları, neden kullanıyoruz
 
 	public static void betweenPostNumber(int number1, int number2) {
-		String hql2 = "select user from User as user where user.postNumber between :number1 and :number2 ";
+		String hql2 = "select user from UserDetail as user where user.postNumber between :number1 and :number2 ";
 		Session session = HibernateUtils.getSessionFactory().openSession();
-		TypedQuery<User> typedQuery = session.createQuery(hql2, User.class);
+		TypedQuery<UserDetail> typedQuery = session.createQuery(hql2, UserDetail.class);
 		typedQuery.setParameter("number1", number1);
 		typedQuery.setParameter("number2", number2);
-		List<User> posts = typedQuery.getResultList();
+		List<UserDetail> posts = typedQuery.getResultList();
 		posts.forEach(System.out::println);
 	}
 
 	public static void betweenPostNumber2(int number1, int number2) {
 		Session session = HibernateUtils.getSessionFactory().openSession();
-		String HQL_QUERY = "select user from User user where user.postNumber between :number1 and :number2";
-		TypedQuery<User> typedQuery = session.createQuery(HQL_QUERY,User.class);
+		String HQL_QUERY = "select user from UserDetail user where user.postNumber between :number1 and :number2";
+		TypedQuery<UserDetail> typedQuery = session.createQuery(HQL_QUERY,UserDetail.class);
 		typedQuery.setParameter("number1", number1);
 		typedQuery.setParameter("number2", number2);
-		List<User> posts = typedQuery.getResultList();
-		for (User user : posts) {
-			System.out.println(user.getUsername());
+		List<UserDetail> posts = typedQuery.getResultList();
+		for (UserDetail user : posts) {
+			System.out.println(user.getName().getLastName());
 		}
 	}
 

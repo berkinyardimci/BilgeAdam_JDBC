@@ -6,16 +6,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.bilgeadam.entity.Adress;
-import com.bilgeadam.entity.Name;
+
 import com.bilgeadam.entity.Post;
 import com.bilgeadam.entity.User;
-import com.bilgeadam.entity.UserDetail;
-import com.bilgeadam.entity.enums.EAdressType;
-import com.bilgeadam.entity.enums.EGender;
+
 import com.bilgeadam.repository.PostRepository;
 import com.bilgeadam.repository.UserRepository;
-import com.bilgeadam.util.HibernateUtils;
+
 
 public class PostController {
 
@@ -45,7 +42,7 @@ public class PostController {
 		postRepository.save(new Post("içerik 55 ", date, user1));
 		
 		
-		
+		//15:05
 
 		
 	}
