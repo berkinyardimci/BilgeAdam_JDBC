@@ -9,8 +9,6 @@ import org.hibernate.Transaction;
 
 import com.bilgeadam.entity.User;
 
-//16:01
-
 public class UserDao implements ICrud<User> {
 
 	@Override
@@ -21,7 +19,6 @@ public class UserDao implements ICrud<User> {
 			transaction = session.beginTransaction();
 			session.save(t);
 			transaction.commit();
-
 		} catch (Exception e) {
 			if (transaction != null) {
 				transaction.rollback();
