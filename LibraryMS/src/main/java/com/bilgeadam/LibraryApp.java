@@ -1,6 +1,6 @@
 package com.bilgeadam;
 
-import com.bilgeadam.util.HibernateUtils;
+import com.bilgeadam.util.LibrarySystemMenu;
 
 public class LibraryApp {
 	
@@ -9,7 +9,11 @@ public class LibraryApp {
 	
 	public static void main(String[] args) {
 		
-		HibernateUtils.getSessionFactory().openSession();
+		//HibernateUtils.getSessionFactory().openSession();
+		
+		LibrarySystemMenu menu = new LibrarySystemMenu();
+		
+		menu.menu();
 		
 	}
 }
