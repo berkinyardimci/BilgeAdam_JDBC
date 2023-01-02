@@ -11,14 +11,19 @@ public class StudentController {
 	public StudentController() {
 		this.studentService = new StudentService();
 	}
-	
+
 	public void create() {
 		String username = BAUtils.readString("Lütfen kullanıcı için belirlediğiniz kullanıcı adını giriniz: ");
 		String password = BAUtils.readString("Lütfen kullanıcı için belirlediğiniz kullanıcı şifresini giriniz: ");
-		
+
 		Student student = new Student(username, password);
-		
+
 		studentService.create(student);
+	}
+
+	public void delete() {
+		long id = BAUtils.readInt("Lütfen silme istediğiniz öğrencinin ID sini giriniz: ");
+		studentService.delete(id);
 	}
 
 }

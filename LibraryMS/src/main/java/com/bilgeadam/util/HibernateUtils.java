@@ -31,7 +31,6 @@ public class HibernateUtils {
 			System.out.println(e.getMessage());
 		}
 		return null;
-
 	}
 
 	public static SessionFactory getSessionFactory() {

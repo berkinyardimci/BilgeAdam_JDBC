@@ -37,7 +37,7 @@ public class StudentDao implements IRepository<Student> {
 				session.getTransaction().begin();
 				session.remove(deletedStudent);
 				session.getTransaction().commit();
-				System.out.println("Student data is added to DB");
+				System.out.println("Student data is deltede to DB");
 			}
 
 		} catch (Exception e) {

@@ -1,7 +1,9 @@
 package com.bilgeadam.dao;
 
 import java.util.List;
+import java.util.Optional;
 
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import org.hibernate.Session;
@@ -106,5 +108,63 @@ public class AuthorDao implements IRepository<Author> {
 		}
 		return null;
 	}
+
+	public Author findByName2(String firstName, String lastName) {
+		Author author = null;
+		Session session = null;
+		session = dataBaseConnectionHibernate();
+		try {
+			String query = "select author from Author as author where firstName =:key1 and lastName =:key2";
+			TypedQuery<Author> typedQuery = session.createQuery(query, Author.class);
+			typedQuery.setParameter("key1", firstName);
+			typedQuery.setParameter("key2", lastName);
+			author = typedQuery.getSingleResult();
+
+		} catch (Exception e) {
+			System.out.println("problem var");
+			Author author2 = new Author(firstName, lastName);
+			create(author2);
+			return author2;
+
+		}
+		return author;
+	}
+
+	public Author findByName(String firstname, String lastname) {
+		Session session = dataBaseConnectionHibernate();
+		Author author = null;
+		String hql = "select a from Author as a where a.firstName =:fn and a.lastName =:ln ";
+		Query query = session.createQuery(hql);
+		query.setParameter("fn", firstname);
+		query.setParameter("ln", lastname);
+		try {
+			author = (Author) query.getSingleResult();
+		} catch (Exception e) {
+			System.out.println("yeni yazar oluşturulcak");
+		}
+		if (author != null) {
+			return author;
+		} else {
+			System.out.println("Bylynamadı");
+			return null;
+		}
+	}
+/*
+	public Optional<Author> findByName3(String firstname, String lastname) {
+		Session session = dataBaseConnectionHibernate();
+		Author author = null;
+		String hql = "select a from Author as a where a.firstName =:fn and a.lastName =:ln ";
+		Query query = session.createQuery(hql);
+		query.setParameter("fn", firstname);
+		query.setParameter("ln", lastname);
+		try {
+			author = (Author) query.getSingleResult();
+			return Optional.of(author);
+		} catch (Exception e) {
+			return Optional.empty();
+
+		}
+	}
+	*/
 
 }
