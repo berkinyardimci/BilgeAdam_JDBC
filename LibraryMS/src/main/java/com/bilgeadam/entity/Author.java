@@ -16,7 +16,6 @@ import lombok.ToString;
 
 @Getter
 @Setter
-@ToString
 @Entity
 public class Author {
 
@@ -29,7 +28,7 @@ public class Author {
 	@Column(name = "last_name")
 	private String lastName;
 
-	@OneToMany()
+	@OneToMany(mappedBy = "author")
 	private List<Book> bookList;
 
 	public Author(String firstName, String lastName) {
@@ -41,6 +40,12 @@ public class Author {
 
 	public Author() {
 
+	}
+
+	@Override
+	public String toString() {
+		return "Author [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + 
+				 "]";
 	}
 
 }

@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -19,7 +20,6 @@ import lombok.ToString;
 
 @Getter
 @Setter
-@ToString
 @Entity
 public class Book {
 	@Id
@@ -29,7 +29,7 @@ public class Book {
 	@ManyToOne
 	private Author author;
 
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "book_detail_id", referencedColumnName = "id")
 	private BookDetail detail;
 
@@ -48,5 +48,11 @@ public class Book {
 	public Book() {
 
 	}
+
+	@Override
+	public String toString() {
+		return "Book [id=" + id + ", author=" + author + ", detail=" + detail + "]";
+	}
+	
 
 }

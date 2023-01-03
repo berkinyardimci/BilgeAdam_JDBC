@@ -17,7 +17,6 @@ import lombok.ToString;
 
 @Getter
 @Setter
-@ToString
 @Entity
 public class Student extends User {
 	@Id
@@ -37,4 +36,10 @@ public class Student extends User {
 
 	public Student() {
 	}
+
+	@Override
+	public String toString() {
+		return "Student [id=" + id + ", userType=" + userType + "]";
+	}
+	
 }

@@ -1,6 +1,7 @@
 package com.bilgeadam.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.bilgeadam.dao.StudentDao;
 import com.bilgeadam.entity.Student;
@@ -39,6 +40,8 @@ public class StudentService implements IService<Student>{
 		return student;
 	}
 	
-	
+	public Optional<Student> findByUserName(String username) {
+		return studentDao.findByUserName(username);
+	}
 	
 }

@@ -10,12 +10,13 @@ public class LibraryApp {
 
 	public static void main(String[] args) {
 
-		// HibernateUtils.getSessionFactory().openSession();
+		 //HibernateUtils.getSessionFactory().openSession();
 
 		LibrarySystemMenu menu = new LibrarySystemMenu();
 		while (true) {
 			menu.menu();
 		}
-
+		
+		 //17:45
 	}
 }

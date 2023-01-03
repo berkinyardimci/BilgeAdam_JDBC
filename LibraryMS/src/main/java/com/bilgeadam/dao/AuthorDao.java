@@ -108,7 +108,7 @@ public class AuthorDao implements IRepository<Author> {
 		}
 		return null;
 	}
-
+/*
 	public Author findByName2(String firstName, String lastName) {
 		Author author = null;
 		Session session = null;
@@ -129,6 +129,7 @@ public class AuthorDao implements IRepository<Author> {
 		}
 		return author;
 	}
+	*/
 
 	public Author findByName(String firstname, String lastname) {
 		Session session = dataBaseConnectionHibernate();

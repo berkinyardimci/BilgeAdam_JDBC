@@ -15,7 +15,6 @@ import lombok.ToString;
 
 @Getter
 @Setter
-@ToString
 @Entity
 public class BookDetail {
 
@@ -52,4 +51,12 @@ public class BookDetail {
 	public BookDetail() {
 
 	}
+
+	@Override
+	public String toString() {
+		return "BookDetail [id=" + id + ", title=" + title + ", isBorrowed=" + isBorrowed + ", bookBorrowDate="
+				+ bookBorrowDate + ", bookReturnDate=" + bookReturnDate + "]";
+	}
+	
+	
 }

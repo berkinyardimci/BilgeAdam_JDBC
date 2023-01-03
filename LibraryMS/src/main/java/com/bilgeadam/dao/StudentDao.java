@@ -1,7 +1,9 @@
 package com.bilgeadam.dao;
 
 import java.util.List;
+import java.util.Optional;
 
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import org.hibernate.Session;
@@ -53,12 +55,12 @@ public class StudentDao implements IRepository<Student> {
 		Session session = null;
 		try {
 			Student student = find(id);
-			
+
 			if (student != null) {
 				student.setUsername(entity.getUsername());
 				student.setPassword(entity.getPassword());
 				student.setBooks(entity.getBooks());
-				
+
 				session = dataBaseConnectionHibernate();
 				session.getTransaction().begin();
 				session.update(student);
@@ -107,4 +109,18 @@ public class StudentDao implements IRepository<Student> {
 		return null;
 	}
 
+	public Optional<Student> findByUserName(String username) {
+		Session session = dataBaseConnectionHibernate();
+		Student student = null;
+		String hql = "select user from Student as user where user.username =:key ";
+		Query query = session.createQuery(hql);
+		query.setParameter("key", username);
+		try {
+			student = (Student) query.getSingleResult();
+			return Optional.of(student);
+		} catch (Exception e) {
+			return Optional.empty();
+
+		}
+	}
 }

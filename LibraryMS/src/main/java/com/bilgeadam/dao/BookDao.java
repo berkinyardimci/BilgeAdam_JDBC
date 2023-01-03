@@ -61,7 +61,8 @@ public class BookDao implements IRepository<Book> {
 				
 				session = dataBaseConnectionHibernate();
 				session.getTransaction().begin();
-				session.update(book);
+				//update merge
+				session.merge(book);
 				session.getTransaction().commit();
 				System.out.println("Book data is added to DB");
 			}

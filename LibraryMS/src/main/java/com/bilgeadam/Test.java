@@ -8,4 +8,8 @@ public class Test {
 	//sadece kitap yazara eklencek
 	
 	//Author daoya findbyName method yazdım parametre olarak firstname, lastname
+	
+	//Student login
+	//şifreler uyuşmuyosa giriş yapamicak menuyu göremicek şifreler yanlış
+	//şifreler uyuşuyosa studen menuyu görebilcek
 }
