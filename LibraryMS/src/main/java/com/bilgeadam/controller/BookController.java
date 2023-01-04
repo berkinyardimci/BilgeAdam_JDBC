@@ -52,6 +52,15 @@ public class BookController {
 		// yoksa hem yazar oluşturcak hemde kitap oluşturcak
 
 	}
+	public void delete() {
+		long id = BAUtils.readInt("Lütfen silme istediğiniz kitabın ID sini giriniz: ");
+		bookService.delete(id);
+	}
+	
+	public void listAll() {
+		bookService.listAll().forEach(book -> System.out.println(book));
+	}
+	
 	/*
 	 * public void createBook2() { Author author; Book book = new Book(); String
 	 * title =
@@ -101,5 +110,29 @@ public class BookController {
 		student.getBooks().add(borrowBook);
 		bookService.update(bookdId, borrowBook);
 		
+	}
+
+	public void listBorrowedBooks() {
+		bookService.listAll().stream()
+		.filter(book-> book.getDetail().isBorrowed() == true)
+		.forEach(book-> System.out.println(book));
+	}
+
+	public LocalDate returnDate() {
+		int bookId = BAUtils.readInt("Teslim tarihini bulmak istediğiniz kitabın idsini giriniz");
+		LocalDate date = bookService.find(bookId).getDetail().getBookReturnDate();
+		System.out.println(date);
+		return date;
+	}
+
+	public void returnBook(Student student) {
+		List<Book> books = student.getBooks();
+		books.forEach(book-> System.out.println(book.getId()+ " "+ book.getDetail().getTitle()));
+		int bookId = BAUtils.readInt("Iade etmek istediginiz kitabın id'sini giriniz.");
+		Book returnBook = bookService.find(bookId);
+		returnBook.getDetail().setBorrowed(false);
+		returnBook.getDetail().setBookReturnDate(LocalDate.now());
+		student.getBooks().remove(returnBook);
+		bookService.update(bookId, returnBook);
 	}
 }

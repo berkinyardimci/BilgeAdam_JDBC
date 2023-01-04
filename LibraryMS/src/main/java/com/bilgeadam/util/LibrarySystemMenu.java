@@ -44,6 +44,11 @@ public class LibrarySystemMenu {
 		menuItems.put(1, "Ogrenci ekle");
 		menuItems.put(2, "Ogrenci sil");
 		menuItems.put(3, "Kitap Ekle");
+		menuItems.put(4, "Kitap Sil");
+		menuItems.put(5, "Tüm kitapları listele");
+		menuItems.put(6, "Kirada olan kitapları listele");
+		menuItems.put(7, "Kitabın ne zaman döneceği bilgisi");
+		
 		int key = BAUtils.menu(menuItems);
 
 		switch (key) {
@@ -55,6 +60,18 @@ public class LibrarySystemMenu {
 			break;
 		case 3:
 			bookController.createBook();
+			break;
+		case 4:
+			bookController.delete();
+			break;
+		case 5:
+			bookController.listAll();
+			break;
+		case 6:
+			bookController.listBorrowedBooks();
+			break;
+		case 7:
+			bookController.returnDate();
 			break;
 		default:
 			break;
@@ -72,7 +89,7 @@ public class LibrarySystemMenu {
 			bookController.borrowBook(student);
 			break;
 		case 2:
-			// bookController.returnBook(student);
+			bookController.returnBook(student);
 			break;
 		default:
 			break;

@@ -34,7 +34,7 @@ public class BookService implements IService<Book> {
 
 	@Override
 	public List<Book> listAll() {
-		
+
 		return bookDao.listAll();
 	}
 

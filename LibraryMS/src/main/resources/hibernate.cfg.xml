@@ -14,5 +14,6 @@
 		<property name="connection.autocommit">false</property>
 		<property name="hbm2ddl.auto">update</property>
 		<property name="hibernate.enable_lazy_load_no_trans">true</property>
+		<property name="hibernate.event.merge.entity_copy_observer">allow</property>
 	</session-factory>
 </hibernate-configuration>

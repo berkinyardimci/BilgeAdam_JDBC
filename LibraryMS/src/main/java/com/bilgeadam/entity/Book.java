@@ -29,7 +29,7 @@ public class Book {
 	@ManyToOne
 	private Author author;
 
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "book_detail_id", referencedColumnName = "id")
 	private BookDetail detail;
 
