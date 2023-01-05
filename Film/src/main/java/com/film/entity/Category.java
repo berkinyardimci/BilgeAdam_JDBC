@@ -1,9 +1,16 @@
 package com.film.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+
 
 @Entity
 public class Category {
@@ -12,11 +19,15 @@ public class Category {
 	private int id;
 
 	private String name;
+	
+	@ManyToMany(mappedBy = "category" ,fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private List<Film> film;
 
 	public Category(int id, String name) {
 		super();
 		this.id = id;
 		this.name = name;
+		this.film = new ArrayList<>();
 	}
 
 	public Category() {
@@ -37,5 +48,14 @@ public class Category {
 	public void setName(String name) {
 		this.name = name;
 	}
+
+	public List<Film> getFilm() {
+		return film;
+	}
+
+	public void setFilm(List<Film> film) {
+		this.film = film;
+	}
+	
 
 }

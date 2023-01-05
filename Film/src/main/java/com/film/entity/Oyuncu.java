@@ -1,11 +1,14 @@
 package com.film.entity;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class Oyuncu {
@@ -16,13 +19,16 @@ public class Oyuncu {
 
 	private String name;
 
-	private List<Odul> odul;
+	//private List<Odul> odul;
+	
+	@ManyToMany(mappedBy = "oyuncu")
+	private Set<Film> films;
 
 	public Oyuncu(int id, String name, List<Odul> odul) {
 		super();
 		this.id = id;
 		this.name = name;
-		this.odul = odul;
+		this.films = new HashSet<>();
 	}
 
 	public Oyuncu() {
@@ -44,12 +50,5 @@ public class Oyuncu {
 		this.name = name;
 	}
 
-	public List<Odul> getOdul() {
-		return odul;
-	}
-
-	public void setOdul(List<Odul> odul) {
-		this.odul = odul;
-	}
 
 }

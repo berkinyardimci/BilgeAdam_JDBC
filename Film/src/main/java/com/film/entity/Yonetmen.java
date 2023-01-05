@@ -1,11 +1,17 @@
 package com.film.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Yonetmen {
@@ -16,13 +22,19 @@ public class Yonetmen {
 
 	private String name;
 
-	private List<Odul> odul;
+	@OneToMany(mappedBy = "yonetmen", cascade = CascadeType.ALL)
+	private List<Film> films;
 
-	public Yonetmen(int id, String name, List<Odul> odul) {
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinColumn(name = "odul_id", nullable = false)
+	private Odul odul;
+
+	public Yonetmen(int id, String name) {
 		super();
 		this.id = id;
 		this.name = name;
-		this.odul = odul;
+		this.films = new ArrayList<>();
+
 	}
 
 	public Yonetmen() {
@@ -43,14 +55,6 @@ public class Yonetmen {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public List<Odul> getOdul() {
-		return odul;
-	}
-
-	public void setOdul(List<Odul> odul) {
-		this.odul = odul;
 	}
 
 }

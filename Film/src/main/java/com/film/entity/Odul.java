@@ -1,9 +1,15 @@
 package com.film.entity;
 
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Odul {
@@ -13,6 +19,12 @@ public class Odul {
 	private int id;
 
 	private String name;
+
+	@OneToMany(mappedBy = "odul", cascade = CascadeType.ALL)
+	private List<Film> film = new ArrayList<>();
+	
+	@OneToMany(mappedBy = "odul", cascade = CascadeType.ALL)
+	private List<Yonetmen> yonetmen =new ArrayList<>();
 
 	public Odul(int id, String name) {
 		super();
