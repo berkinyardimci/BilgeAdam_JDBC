@@ -108,5 +108,5 @@ public class BookDetailDao implements IRepository<BookDetail> {
 		}
 		return null;
 	}
-
+	
 }

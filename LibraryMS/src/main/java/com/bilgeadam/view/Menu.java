@@ -44,6 +44,9 @@ public class Menu extends JFrame {
 		JButton btnNewButton = new JButton("Admin");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				AdminManager adminManager = new AdminManager();
+				adminManager.setVisible(true); //studen logini açar
+				dispose();
 			}
 		});
 		btnNewButton.setBounds(148, 76, 85, 21);
