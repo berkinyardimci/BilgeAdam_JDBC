@@ -20,7 +20,7 @@ public class Category {
 
 	private String name;
 	
-	@ManyToMany(mappedBy = "category" ,fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToMany(mappedBy = "category" ,fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<Film> film;
 
 	public Category(int id, String name) {

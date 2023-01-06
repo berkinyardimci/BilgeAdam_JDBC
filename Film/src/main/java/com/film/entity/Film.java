@@ -30,16 +30,16 @@ public class Film {
 	@JoinTable(name = "film_oyuncu", joinColumns = @JoinColumn(name = "film_id"), inverseJoinColumns = @JoinColumn(name = "oyuncu_id"))
 	private Set<Oyuncu> oyuncu = new HashSet<>();
 
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "yonetmen_id", nullable = false)
 	private Yonetmen yonetmen;
 
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "odul_id")
 	private Odul odul;
 
-	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	private List<Category> category;
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	private List<Category> category = new ArrayList<>();
 
 	private LocalDate production_date;
 
@@ -105,5 +105,14 @@ public class Film {
 	public void setCategory(List<Category> category) {
 		this.category = category;
 	}
+
+	public Odul getOdul() {
+		return odul;
+	}
+
+	public void setOdul(Odul odul) {
+		this.odul = odul;
+	}
+	
 
 }

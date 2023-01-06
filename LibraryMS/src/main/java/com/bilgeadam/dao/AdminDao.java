@@ -87,6 +87,7 @@ public class AdminDao implements IRepository<Admin> {
 	@Override
 	public Admin find(long id) {
 		Session session = dataBaseConnectionHibernate();
+		
 		Admin admin;
 		try {
 			admin = session.find(Admin.class, id);
