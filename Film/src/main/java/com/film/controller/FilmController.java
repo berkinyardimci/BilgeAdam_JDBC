@@ -69,7 +69,7 @@ public class FilmController {
 		filmService.delete(id);
 	}
 	public void find() {
-		int id = BAUtils.readInt("Liddddz: ");
+		long id = BAUtils.readInt("Liddddz: ");
 		filmService.find(id);
 	}
 	

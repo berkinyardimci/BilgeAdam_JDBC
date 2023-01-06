@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="com.bilgeadam.dao.BookDao"/>
     <fullyQualifiedTypeName name="com.bilgeadam.service.IService"/>
     <fullyQualifiedTypeName name="com.bilgeadam.dao.BookDetailDao"/>
     <fullyQualifiedTypeName name="com.bilgeadam.entity.BookDetail"/>
@@ -60,4 +59,5 @@
     <fullyQualifiedTypeName name="com.film.repository.YonetmenDao"/>
     <fullyQualifiedTypeName name="com.film.repository.CategoryDao"/>
     <fullyQualifiedTypeName name="com.film.entity.Film"/>
+    <fullyQualifiedTypeName name="java.lang.String"/>
 </qualifiedTypeNameHistroy>

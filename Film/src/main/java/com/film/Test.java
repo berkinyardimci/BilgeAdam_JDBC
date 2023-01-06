@@ -13,8 +13,8 @@ public class Test {
 		FilmController filmController = new FilmController();
 		//filmController.createFilm();
 		
-		//filmController.delete();
+		filmController.delete();
 		
-		filmController.find();
+		//filmController.find();
 	}
 }

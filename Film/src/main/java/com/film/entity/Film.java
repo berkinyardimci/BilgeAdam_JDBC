@@ -22,7 +22,7 @@ public class Film {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private long id;
 
 	private String name;
 
@@ -30,7 +30,7 @@ public class Film {
 	@JoinTable(name = "film_oyuncu", joinColumns = @JoinColumn(name = "film_id"), inverseJoinColumns = @JoinColumn(name = "oyuncu_id"))
 	private Set<Oyuncu> oyuncu = new HashSet<>();
 
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
 	@JoinColumn(name = "yonetmen_id", nullable = false)
 	private Yonetmen yonetmen;
 
@@ -43,7 +43,7 @@ public class Film {
 
 	private LocalDate production_date;
 
-	public Film(int id, String name, Set<Oyuncu> oyuncu, Yonetmen yonetmen, List<Odul> odul, List<Category> category,
+	public Film(long id, String name, Set<Oyuncu> oyuncu, Yonetmen yonetmen, List<Odul> odul, List<Category> category,
 			LocalDate production_date) {
 		super();
 		this.id = id;
@@ -58,11 +58,11 @@ public class Film {
 
 	}
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 

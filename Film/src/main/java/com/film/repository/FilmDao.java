@@ -30,21 +30,24 @@ public class FilmDao implements ICrud<Film> {
 
 	@Override
 	public void delete(long id) {
+		Film deletedFilm = find(id);
 		Session session = null;
+
 		try {
-			Film deletedFilm = find(id);
-			System.out.println(deletedFilm.getName());
+			String filmName = deletedFilm.getName();
+			System.out.println(filmName);
+
 			if (deletedFilm != null) {
 				session = dataBaseConnectionHibernate();
 				session.getTransaction().begin();
-				session.remove(deletedFilm);
+				session.delete(deletedFilm);
 				session.getTransaction().commit();
 				System.out.println("Film data is deleted to DB");
 			}
 
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
-			System.out.println("Some problem occured while adding Film to DB");
+			System.out.println("Some problem occured while deleted Film to DB");
 		} finally {
 
 			session.close();
@@ -95,7 +98,7 @@ public class FilmDao implements ICrud<Film> {
 	@Override
 	public Film find(long id) {
 		Session session = dataBaseConnectionHibernate();
-		Film film;
+		Film film = null;
 		try {
 			film = session.find(Film.class, id);
 			if (film != null) {
