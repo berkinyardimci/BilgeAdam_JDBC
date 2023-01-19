@@ -1,26 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="com.bilgeadam.service.IService"/>
-    <fullyQualifiedTypeName name="com.bilgeadam.dao.BookDetailDao"/>
-    <fullyQualifiedTypeName name="com.bilgeadam.entity.BookDetail"/>
-    <fullyQualifiedTypeName name="lombok.Lombok"/>
-    <fullyQualifiedTypeName name="javax.persistence.Query"/>
-    <fullyQualifiedTypeName name="java.util.Optional"/>
-    <fullyQualifiedTypeName name="java.util.stream.Collectors"/>
-    <fullyQualifiedTypeName name="lombok.ToString"/>
-    <fullyQualifiedTypeName name="com.bilgeadam.util.BAUtils"/>
-    <fullyQualifiedTypeName name="com.bilgeadam.view.StudentLogin"/>
-    <fullyQualifiedTypeName name="javax.swing.JOptionPane"/>
-    <fullyQualifiedTypeName name="com.bilgeadam.view.StudentManager"/>
-    <fullyQualifiedTypeName name="com.bilgeadam.entity.Book"/>
-    <fullyQualifiedTypeName name="com.bilgeadam.entity.Author"/>
-    <fullyQualifiedTypeName name="com.bilgeadam.service.BookService"/>
-    <fullyQualifiedTypeName name="com.bilgeadam.service.AuthorService"/>
-    <fullyQualifiedTypeName name="com.bilgeadam.service.BookDetailService"/>
-    <fullyQualifiedTypeName name="com.bilgeadam.controller.BookController"/>
-    <fullyQualifiedTypeName name="java.lang.System"/>
-    <fullyQualifiedTypeName name="org.hibernate.annotations.OnDelete"/>
-    <fullyQualifiedTypeName name="org.hibernate.annotations.OnDeleteAction"/>
     <fullyQualifiedTypeName name="com.bilgeadam.service.StudentService"/>
     <fullyQualifiedTypeName name="com.bilgeadam.entity.Student"/>
     <fullyQualifiedTypeName name="com.bilgeadam.view.AdminManager"/>
@@ -32,7 +11,6 @@
     <fullyQualifiedTypeName name="javax.persistence.JoinTable"/>
     <fullyQualifiedTypeName name="javax.persistence.OneToMany"/>
     <fullyQualifiedTypeName name="javax.persistence.ManyToOne"/>
-    <fullyQualifiedTypeName name="javax.persistence.FetchType"/>
     <fullyQualifiedTypeName name="javax.persistence.CascadeType"/>
     <fullyQualifiedTypeName name="javax.persistence.ManyToMany"/>
     <fullyQualifiedTypeName name="org.hibernate.Hibernate"/>
@@ -60,4 +38,26 @@
     <fullyQualifiedTypeName name="com.film.repository.CategoryDao"/>
     <fullyQualifiedTypeName name="com.film.entity.Film"/>
     <fullyQualifiedTypeName name="java.lang.String"/>
+    <fullyQualifiedTypeName name="com.bilgeadam.factory.ICars"/>
+    <fullyQualifiedTypeName name="com.bilgeadam.factory.HatcbackCar"/>
+    <fullyQualifiedTypeName name="com.bilgeadam.factory.SedanCar"/>
+    <fullyQualifiedTypeName name="com.bilgeadam.factory.JeepCar"/>
+    <fullyQualifiedTypeName name="com.bilgeadam.factory.ECar"/>
+    <fullyQualifiedTypeName name="com.bilgeadam.factory.CarFactory"/>
+    <fullyQualifiedTypeName name="com.bilgeadam.factory.Singelton"/>
+    <fullyQualifiedTypeName name="com.bilgeadam.factoryAltrernatif.Car"/>
+    <fullyQualifiedTypeName name="com.bilgeadam.factoryAltrernatif.HatcbackCar"/>
+    <fullyQualifiedTypeName name="com.bilgeadam.factoryAltrernatif.CarFactory"/>
+    <fullyQualifiedTypeName name="com.bilgeadam.factoryAltrernatif.CarType"/>
+    <fullyQualifiedTypeName name="com.bilgeadam.Abstractfactory.Ziraat"/>
+    <fullyQualifiedTypeName name="com.bilgeadam.Abstractfactory.Bank"/>
+    <fullyQualifiedTypeName name="com.bilgeadam.Abstractfactory.Loan"/>
+    <fullyQualifiedTypeName name="com.bilgeadam.Abstractfactory.Garanti"/>
+    <fullyQualifiedTypeName name="com.bilgeadam.Abstractfactory.BankFactory"/>
+    <fullyQualifiedTypeName name="com.bilgeadam.Abstractfactory.LoanFactory"/>
+    <fullyQualifiedTypeName name="java.util.Scanner"/>
+    <fullyQualifiedTypeName name="java.lang.System"/>
+    <fullyQualifiedTypeName name="com.bilgeadam.Abstractfactory.AbstractFactory"/>
+    <fullyQualifiedTypeName name="com.bilgeadam.Abstractfactory.FactoryCreator"/>
+    <fullyQualifiedTypeName name="javax.persistence.FetchType"/>
 </qualifiedTypeNameHistroy>

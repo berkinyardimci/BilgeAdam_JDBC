@@ -30,7 +30,7 @@ public class Film {
 	@JoinTable(name = "film_oyuncu", joinColumns = @JoinColumn(name = "film_id"), inverseJoinColumns = @JoinColumn(name = "oyuncu_id"))
 	private Set<Oyuncu> oyuncu = new HashSet<>();
 
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
 	@JoinColumn(name = "yonetmen_id", nullable = false)
 	private Yonetmen yonetmen;
 
